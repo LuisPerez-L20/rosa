@@ -1,0 +1,473 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Georgia, serif;
+}
+
+
+/* CONTENEDOR */
+
+.contenedor {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ROSA */
+
+.rosa {
+    width: min(80vw, 500px);
+    height: min(85vh, 700px);
+
+    overflow: visible;
+}
+
+
+/* ==================================
+   CONFIGURACIÓN GENERAL DE LOS TRAZOS
+================================== */
+
+#tallo,
+#hojaIzquierda,
+#hojaDerecha,
+#nervaduraIzquierda,
+#nervaduraDerecha,
+#petaloCentral,
+#petaloIzquierdo,
+#petaloDerecho,
+#petaloExteriorIzq,
+#petaloExteriorDer,
+#petaloSuperior {
+
+    fill: none;
+
+    stroke: #b00020;
+
+    stroke-width: 7;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    opacity: 0;
+}
+
+
+/* ==================================
+   TALLO
+================================== */
+
+#tallo {
+
+    stroke: #247a32;
+
+    stroke-width: 9;
+
+    stroke-dasharray: 500;
+
+    stroke-dashoffset: 500;
+
+    animation:
+        crecerTallo 3s ease-out forwards;
+
+    opacity: 1;
+}
+
+
+/* ==================================
+   HOJAS
+================================== */
+
+#hojaIzquierda,
+#hojaDerecha {
+
+    fill: #176b2c;
+
+    stroke: #2d9b42;
+
+    stroke-width: 4;
+
+    opacity: 0;
+
+    transform-box: fill-box;
+
+    transform-origin: center;
+}
+
+
+#hojaIzquierda {
+
+    animation:
+        aparecerHoja 1.2s ease forwards;
+
+    animation-delay: 2.4s;
+}
+
+
+#hojaDerecha {
+
+    animation:
+        aparecerHoja 1.2s ease forwards;
+
+    animation-delay: 3.0s;
+}
+
+
+/* NERVADURAS */
+
+#nervaduraIzquierda,
+#nervaduraDerecha {
+
+    stroke: #62b86b;
+
+    stroke-width: 2;
+
+    stroke-dasharray: 150;
+
+    stroke-dashoffset: 150;
+
+    opacity: 1;
+}
+
+
+#nervaduraIzquierda {
+
+    animation:
+        dibujarNervadura 1s ease forwards;
+
+    animation-delay: 3.1s;
+}
+
+
+#nervaduraDerecha {
+
+    animation:
+        dibujarNervadura 1s ease forwards;
+
+    animation-delay: 3.6s;
+}
+
+
+/* ==================================
+   PÉTALOS
+================================== */
+
+#petaloCentral,
+#petaloIzquierdo,
+#petaloDerecho,
+#petaloExteriorIzq,
+#petaloExteriorDer,
+#petaloSuperior {
+
+    fill: #8b0015;
+
+    stroke: #d41435;
+
+    stroke-width: 4;
+
+    opacity: 0;
+
+    transform-box: fill-box;
+
+    transform-origin: center;
+}
+
+
+/* PÉTALO CENTRAL */
+
+#petaloCentral {
+
+    animation:
+        abrirPetalo 1.2s ease forwards;
+
+    animation-delay: 3.8s;
+}
+
+
+/* PÉTALO IZQUIERDO */
+
+#petaloIzquierdo {
+
+    animation:
+        abrirPetalo 1.2s ease forwards;
+
+    animation-delay: 4.3s;
+}
+
+
+/* PÉTALO DERECHO */
+
+#petaloDerecho {
+
+    animation:
+        abrirPetalo 1.2s ease forwards;
+
+    animation-delay: 4.8s;
+}
+
+
+/* PÉTALO EXTERIOR IZQUIERDO */
+
+#petaloExteriorIzq {
+
+    fill: #a6001c;
+
+    animation:
+        abrirPetalo 1.2s ease forwards;
+
+    animation-delay: 5.3s;
+}
+
+
+/* PÉTALO EXTERIOR DERECHO */
+
+#petaloExteriorDer {
+
+    fill: #a6001c;
+
+    animation:
+        abrirPetalo 1.2s ease forwards;
+
+    animation-delay: 5.8s;
+}
+
+
+/* PÉTALO SUPERIOR */
+
+#petaloSuperior {
+
+    fill: #c20d2f;
+
+    animation:
+        abrirPetalo 1.3s ease forwards;
+
+    animation-delay: 6.3s;
+}
+
+
+/* ==================================
+   CENTRO
+================================== */
+
+#centro {
+
+    fill: #ff2748;
+
+    opacity: 0;
+
+    animation:
+        aparecerCentro 1s ease forwards;
+
+    animation-delay: 7.1s;
+
+    filter:
+        drop-shadow(0 0 8px #ff1744);
+}
+
+
+/* ==================================
+   MENSAJE FINAL
+================================== */
+
+#mensaje {
+
+    position: absolute;
+
+    bottom: 6%;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 30px;
+
+    letter-spacing: 3px;
+
+    opacity: 0;
+
+    animation:
+        aparecerMensaje 2s ease forwards;
+
+    animation-delay: 8s;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.5),
+        0 0 25px rgba(255, 0, 40, 0.5);
+}
+
+
+#mensaje div {
+
+    font-size: 25px;
+
+    margin-top: 5px;
+
+}
+
+
+/* ==================================
+   ANIMACIONES
+================================== */
+
+@keyframes crecerTallo {
+
+    0% {
+
+        stroke-dashoffset: 500;
+
+    }
+
+    100% {
+
+        stroke-dashoffset: 0;
+
+    }
+}
+
+
+@keyframes aparecerHoja {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0);
+
+    }
+
+    70% {
+
+        opacity: 1;
+
+        transform: scale(1.15);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+}
+
+
+@keyframes dibujarNervadura {
+
+    0% {
+
+        stroke-dashoffset: 150;
+
+    }
+
+    100% {
+
+        stroke-dashoffset: 0;
+
+    }
+}
+
+
+@keyframes abrirPetalo {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.15)
+            rotate(-15deg);
+
+    }
+
+    60% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.08)
+            rotate(3deg);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0deg);
+
+    }
+}
+
+
+@keyframes aparecerCentro {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0);
+
+    }
+
+    70% {
+
+        opacity: 1;
+
+        transform: scale(1.4);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+}
+
+
+@keyframes aparecerMensaje {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+}
+
